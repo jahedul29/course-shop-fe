@@ -22,10 +22,8 @@ type SelectFieldProps = {
 const FormSelectField = ({
   name,
   size,
-  value,
   label,
   options,
-  defaultValue,
   placeholder,
 }: SelectFieldProps) => {
   const {

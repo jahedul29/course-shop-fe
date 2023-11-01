@@ -8,7 +8,7 @@ const Navbar = () => {
   const user: any = getUserInfo();
   const navigate = useNavigate();
 
-  const { data, isLoading } = useGetUserDetailsQuery(user?.userId, {
+  const { data } = useGetUserDetailsQuery(user?.userId, {
     refetchOnMountOrArgChange: true,
     skip: !user?.userId,
   });

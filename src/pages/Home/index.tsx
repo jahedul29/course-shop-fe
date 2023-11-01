@@ -8,8 +8,8 @@ import { useState } from 'react';
 const Home = () => {
   const [limit, setLimit] = useState<number>(8);
   const [page, setPage] = useState<number>(1);
-  const [sortBy, setSortBy] = useState<string>('');
-  const [sortOrder, setSortOrder] = useState<string>('');
+  const [sortBy] = useState<string>('');
+  const [sortOrder] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const query: Record<string, any> = {

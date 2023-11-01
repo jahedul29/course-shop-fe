@@ -13,16 +13,7 @@ interface IInput {
   label?: string;
 }
 
-const FormInput = ({
-  name,
-  type,
-  size,
-  value,
-  id,
-  placeholder,
-  validate,
-  label,
-}: IInput) => {
+const FormInput = ({ name, type, size, value, placeholder, label }: IInput) => {
   const {
     control,
     formState: { errors },
