@@ -1,6 +1,6 @@
 import Form from '@/components/common/Form';
 import FormInput from '@/components/common/FormInput';
-import Loading from '@/components/common/Loading/Loading';
+import Loading from '@/components/common/Loading';
 import { useLoginMutation } from '@/redux/features/auth/authApi';
 import { storeUserInfo } from '@/service/auth.service';
 import { loginFormSchema } from '@/validation-schema';
@@ -21,7 +21,6 @@ const Login = () => {
         message.success('User logged in successfully');
         storeUserInfo({ accessToken: res?.accessToken });
         navigate(location?.state?.from ? location.state.from : '/');
-        // navigate('/');
       }
     } catch (error: any) {
       console.log(error.message);

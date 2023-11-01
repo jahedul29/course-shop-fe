@@ -1,4 +1,4 @@
-import Loading from '@/components/common/Loading/Loading';
+import Loading from '@/components/common/Loading';
 import EnrollmentCard from '@/components/enrollment/EnrollmentCard';
 import {
   useGetAllEnrollmentsQuery,

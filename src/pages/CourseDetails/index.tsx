@@ -1,4 +1,4 @@
-import Loading from '@/components/common/Loading/Loading';
+import Loading from '@/components/common/Loading';
 import { useGetCourseDetailsQuery } from '@/redux/features/course/courseApi';
 import { useEnrollStudentIntoCourseMutation } from '@/redux/features/enrollment/enrollmentApi';
 import { getUserInfo } from '@/service/auth.service';
@@ -41,7 +41,7 @@ const CourseDetails = () => {
 
   return (
     <div className="container px-3 lg:px-0 lg:mx-auto">
-      {isLoading || (enrollIntoCourseOptions.isLoading && <Loading />)}
+      {(isLoading || enrollIntoCourseOptions.isLoading) && <Loading />}
       <div className="grid grid-cols-3">
         <div className="col-span-3 lg:col-span-2">
           <h1 className="text-black text-6xl font-bold">{data?.name}</h1>

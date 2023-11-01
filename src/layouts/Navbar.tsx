@@ -37,9 +37,6 @@ const Navbar = () => {
                     <li>
                       <Link to="/dashboard">Dashboard</Link>
                     </li>
-                    <li>
-                      <a>Details</a>
-                    </li>
                     <li className="cursor-pointer" onClick={handleLogout}>
                       <a>Logout</a>
                     </li>

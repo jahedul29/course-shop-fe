@@ -1,6 +1,6 @@
 import CustomPagination from '@/components/common/CustomPagination';
-import Loading from '@/components/common/Loading/Loading';
-import CourseCard from '@/components/course/CourseCard/CourseCard';
+import Loading from '@/components/common/Loading';
+import CourseCard from '@/components/course/CourseCard';
 import { useDebounced } from '@/hooks/common';
 import { useGetCoursesQuery } from '@/redux/features/course/courseApi';
 import { useState } from 'react';
