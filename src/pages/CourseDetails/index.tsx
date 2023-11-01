@@ -1,8 +1,9 @@
+import Loading from '@/components/common/Loading/Loading';
 import { useGetCourseDetailsQuery } from '@/redux/features/course/courseApi';
 import { AiOutlineSchedule } from 'react-icons/ai';
 import { GiDuration } from 'react-icons/gi';
-import { GrStatusGood } from 'react-icons/gr';
-import { HiOutlineLocationMarker } from 'react-icons/hi';
+import { HiOutlineLocationMarker, HiStatusOnline } from 'react-icons/hi';
+import { LiaChalkboardTeacherSolid } from 'react-icons/lia';
 import { useParams } from 'react-router-dom';
 
 const CourseDetails = () => {
@@ -16,6 +17,7 @@ const CourseDetails = () => {
 
   return (
     <div className="container mx-auto">
+      {isLoading && <Loading />}
       <div className="grid grid-cols-3">
         <div className="col-span-2">
           <h1 className="text-black text-6xl font-bold">{data?.name}</h1>
@@ -23,7 +25,10 @@ const CourseDetails = () => {
             {data?.description}
           </p>
           <div className="flex mt-5 text-2xl gap-x-2 font-semibold text-gray-400">
-            <p>Instructor: </p>
+            <p className="flex items-center gap-x-1">
+              <LiaChalkboardTeacherSolid className="text-primary font-bold" />{' '}
+              Instructor:{' '}
+            </p>
             <p>{data?.instructor}</p>
           </div>
         </div>
@@ -34,27 +39,27 @@ const CourseDetails = () => {
       <div className="mt-10 p-4 bg-gray-100 flex justify-around text-black font-semibold">
         <div className="flex flex-col items-center">
           <p className="text-2xl flex items-center gap-x-1">
-            <GiDuration /> Duration
+            <GiDuration className="text-primary font-bold" /> Duration
           </p>
           <p className="flex gap-x-2 items-center"> {data?.duration}</p>
         </div>
         <div className="flex flex-col items-center">
           <p className="text-2xl flex items-center gap-x-1">
-            <GrStatusGood />
+            <HiStatusOnline className="text-primary font-bold" />
             Course Status
           </p>
           <p> {data?.enrollmentStatus}</p>
         </div>
         <div className="flex flex-col items-center">
           <p className="text-2xl flex items-center gap-x-1">
-            <HiOutlineLocationMarker />
+            <HiOutlineLocationMarker className="text-primary font-bold" />
             Location
           </p>
           <p>{data?.location}</p>
         </div>
         <div className="flex flex-col items-center">
           <p className="text-2xl flex items-center gap-x-1">
-            <AiOutlineSchedule />
+            <AiOutlineSchedule className="text-primary font-bold" />
             Schedule
           </p>
           <p>{data?.schedule}</p>

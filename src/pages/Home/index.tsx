@@ -36,6 +36,7 @@ const Home = () => {
 
   return (
     <div className="container mx-auto">
+      {isLoading && <Loading />}
       <div className="flex justify-between border-b-2 items-center pb-3">
         <p className="text-black text-2xl font-semibold">Available Courses</p>
         <div>
@@ -48,13 +49,9 @@ const Home = () => {
         </div>
       </div>
       <div>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-4">
-            {data?.courses?.map((item: any) => <CourseCard {...item} />)}
-          </div>
-        )}
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-4">
+          {data?.courses?.map((item: any) => <CourseCard {...item} />)}
+        </div>
       </div>
     </div>
   );
