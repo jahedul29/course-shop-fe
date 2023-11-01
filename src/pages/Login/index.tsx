@@ -6,10 +6,12 @@ import { storeUserInfo } from '@/service/auth.service';
 import { loginFormSchema } from '@/validation-schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, message } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [login, loginOptions] = useLoginMutation();
 
   const onSubmit = async (data: any) => {
@@ -17,9 +19,10 @@ const Login = () => {
       const res = await login({ ...data }).unwrap();
       if (res?.accessToken) {
         message.success('User logged in successfully');
-        navigate('/');
+        storeUserInfo({ accessToken: res?.accessToken });
+        navigate(location?.state?.from ? location.state.from : '/');
+        // navigate('/');
       }
-      storeUserInfo({ accessToken: res?.accessToken });
     } catch (error: any) {
       console.log(error.message);
     }

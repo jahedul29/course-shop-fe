@@ -1,3 +1,4 @@
+import CustomPagination from '@/components/common/CustomPagination';
 import Loading from '@/components/common/Loading/Loading';
 import CourseCard from '@/components/course/CourseCard/CourseCard';
 import { useDebounced } from '@/hooks/common';
@@ -43,16 +44,34 @@ const Home = () => {
           <input
             type="text"
             placeholder="Search"
-            className="input input-bordered w-full max-w-xs bg-transparent text-black"
+            className="input input-bordered w-full border-2 max-w-xs bg-transparent text-black"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
       </div>
       <div>
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-4">
-          {data?.courses?.map((item: any) => <CourseCard {...item} />)}
-        </div>
+        {!data?.courses?.length ? (
+          <div className="flex items-center justify-center w-full pt-10">
+            <p className="text-center text-xl text-black">
+              No courses available
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-4">
+            {data?.courses?.map((item: any) => <CourseCard {...item} />)}
+          </div>
+        )}
       </div>
+      <CustomPagination
+        currentPage={page}
+        limit={limit}
+        total={data?.meta.total as number}
+        onChange={(page, pageSize) => {
+          setLimit(pageSize);
+          setPage(page);
+        }}
+        pageSizeOptions={[4, 8, 16, 32]}
+      />
     </div>
   );
 };

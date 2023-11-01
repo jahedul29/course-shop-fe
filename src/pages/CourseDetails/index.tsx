@@ -1,10 +1,13 @@
 import Loading from '@/components/common/Loading/Loading';
 import { useGetCourseDetailsQuery } from '@/redux/features/course/courseApi';
+import { useEnrollStudentIntoCourseMutation } from '@/redux/features/enrollment/enrollmentApi';
+import { getUserInfo } from '@/service/auth.service';
+import { Button, message } from 'antd';
 import { AiOutlineSchedule } from 'react-icons/ai';
 import { GiDuration } from 'react-icons/gi';
 import { HiOutlineLocationMarker, HiStatusOnline } from 'react-icons/hi';
 import { LiaChalkboardTeacherSolid } from 'react-icons/lia';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const CourseDetails = () => {
   const { id } = useParams();
@@ -12,12 +15,33 @@ const CourseDetails = () => {
     refetchOnMountOrArgChange: true,
     skip: !id,
   });
+  const navigate = useNavigate();
+  const [enrollIntoCourse, enrollIntoCourseOptions] =
+    useEnrollStudentIntoCourseMutation();
 
-  console.log({ data });
+  const handleEnroll = async () => {
+    message.destroy();
+    const user = getUserInfo();
+    if (!user) {
+      navigate('/login');
+    }
+    const res: any = await enrollIntoCourse({
+      courseId: id,
+      userId: (getUserInfo() as any).userId,
+    });
+
+    if (res?.error) {
+      message.error(res.error.data);
+      return;
+    }
+
+    message.success('Student successfully enrolled');
+    navigate('/dashboard');
+  };
 
   return (
     <div className="container mx-auto">
-      {isLoading && <Loading />}
+      {isLoading || (enrollIntoCourseOptions.isLoading && <Loading />)}
       <div className="grid grid-cols-3">
         <div className="col-span-2">
           <h1 className="text-black text-6xl font-bold">{data?.name}</h1>
@@ -65,9 +89,18 @@ const CourseDetails = () => {
           <p>{data?.schedule}</p>
         </div>
       </div>
-      <div className="grid grid-cols-3 mt-12">
+      <div className="grid grid-cols-3 mt-6">
         <div className="col-span-2">
-          <h1 className="text-3xl text-black font-semibold">Syllabus</h1>
+          <h1 className="text-3xl text-black font-semibold">Prerequisites</h1>
+          <ul className="mx-auto ml-10 mt-5 list-disc">
+            {data?.prerequisites?.map((prereq: string) => (
+              <li className="text-gray-600 text-xl font-medium mb-2">
+                {prereq}
+              </li>
+            ))}
+          </ul>
+
+          <h1 className="text-3xl text-black font-semibold mt-10">Syllabus</h1>
           <div className="join join-vertical w-full mt-5 bg-gray-100 text-gray-700">
             {data?.syllabus?.map((item: any) => (
               <div className="collapse collapse-arrow join-item">
@@ -84,9 +117,13 @@ const CourseDetails = () => {
           </div>
         </div>
         <div className="col-span-1">
-          <button className="rounded-md mt-14 px-12 py-4 text-3xl font-semibold text-white flex items-center justify-center cursor-pointer ml-auto bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
+          <Button
+            onClick={handleEnroll}
+            className="rounded-md mt-14 px-14 py-8 text-3xl font-semibold !text-white flex items-center justify-center cursor-pointer ml-auto transition-all duration-500 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500"
+            loading={enrollIntoCourseOptions?.isLoading}
+          >
             Enroll Now
-          </button>
+          </Button>
         </div>
       </div>
     </div>

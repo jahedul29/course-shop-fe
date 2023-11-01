@@ -1,5 +1,7 @@
 import App from '@/App';
+import PrivateRoute from '@/components/common/PrivateRoute';
 import CourseDetails from '@/pages/CourseDetails';
+import Dashboard from '@/pages/Dashboard';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
@@ -18,6 +20,14 @@ const routes = createBrowserRouter([
       {
         path: '/course/:id',
         element: <CourseDetails />,
+      },
+      {
+        path: '/dashboard',
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
       },
     ],
   },
