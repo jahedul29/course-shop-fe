@@ -32,7 +32,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container px-3 lg:px-0 lg:mx-auto">
       {(isLoading || markCourseAsCompletedOptions.isLoading) && <Loading />}
       <h1 className="text-3xl text-black mb-8 font-bold">Dashboard</h1>
       <div>
@@ -41,7 +41,7 @@ const Dashboard = () => {
         </h1>
         <div>
           {!isLoading && data && data.length > 0 ? (
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-4">
               {data.map((item: any) => (
                 <EnrollmentCard
                   {...{

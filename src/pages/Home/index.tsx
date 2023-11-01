@@ -36,10 +36,12 @@ const Home = () => {
   );
 
   return (
-    <div className="container mx-auto">
+    <div className="container sm:mx-auto">
       {isLoading && <Loading />}
       <div className="flex justify-between border-b-2 items-center pb-3">
-        <p className="text-black text-2xl font-semibold">Available Courses</p>
+        <p className="text-black text-2xl font-semibold mx-2 sm:mx-0">
+          Available Courses
+        </p>
         <div>
           <input
             type="text"
@@ -49,7 +51,7 @@ const Home = () => {
           />
         </div>
       </div>
-      <div>
+      <div className="mx-2 sm:mx-0">
         {!data?.courses?.length ? (
           <div className="flex items-center justify-center w-full pt-10">
             <p className="text-center text-xl text-black">
@@ -57,7 +59,7 @@ const Home = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-4">
             {data?.courses?.map((item: any) => <CourseCard {...item} />)}
           </div>
         )}

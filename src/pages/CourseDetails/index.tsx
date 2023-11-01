@@ -40,15 +40,15 @@ const CourseDetails = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container px-3 lg:px-0 lg:mx-auto">
       {isLoading || (enrollIntoCourseOptions.isLoading && <Loading />)}
       <div className="grid grid-cols-3">
-        <div className="col-span-2">
+        <div className="col-span-3 lg:col-span-2">
           <h1 className="text-black text-6xl font-bold">{data?.name}</h1>
           <p className="text-gray-600 text-lg font-semibold mt-8">
             {data?.description}
           </p>
-          <div className="flex mt-5 text-2xl gap-x-2 font-semibold text-gray-400">
+          <div className="flex flex-col sm:flex-row sm:items-start items-center mt-5 text-2xl gap-x-2 font-semibold text-gray-400">
             <p className="flex items-center gap-x-1">
               <LiaChalkboardTeacherSolid className="text-primary font-bold" />{' '}
               Instructor:{' '}
@@ -56,11 +56,11 @@ const CourseDetails = () => {
             <p>{data?.instructor}</p>
           </div>
         </div>
-        <div className="col-span-1">
-          <img className="ml-auto" src={data?.thumbnail} alt="" />
+        <div className="col-span-3 lg:col-span-1 mt-10 lg:mt-0">
+          <img className="mx-auto lg:ml-auto" src={data?.thumbnail} alt="" />
         </div>
       </div>
-      <div className="mt-10 p-4 bg-gray-100 flex justify-around text-black font-semibold">
+      <div className="mt-10 p-4 bg-gray-100 flex flex-col sm:gap-y-0 gap-y-3 sm:flex-row justify-around text-black font-semibold">
         <div className="flex flex-col items-center">
           <p className="text-2xl flex items-center gap-x-1">
             <GiDuration className="text-primary font-bold" /> Duration
@@ -90,7 +90,7 @@ const CourseDetails = () => {
         </div>
       </div>
       <div className="grid grid-cols-3 mt-6">
-        <div className="col-span-2">
+        <div className="col-span-3 lg:col-span-2 order-2 lg:order-1 mt-10 lg:mt-0">
           <h1 className="text-3xl text-black font-semibold">Prerequisites</h1>
           <ul className="mx-auto ml-10 mt-5 list-disc">
             {data?.prerequisites?.map((prereq: string) => (
@@ -116,10 +116,10 @@ const CourseDetails = () => {
             ))}
           </div>
         </div>
-        <div className="col-span-1">
+        <div className="col-span-3 lg:col-span-1 order-1 lg:order-2">
           <Button
             onClick={handleEnroll}
-            className="rounded-md mt-14 px-14 py-8 text-3xl font-semibold !text-white flex items-center justify-center cursor-pointer ml-auto transition-all duration-500 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500"
+            className="rounded-md mt-10 lg:mt-14 px-14 py-8 text-3xl font-semibold !text-white flex items-center justify-center cursor-pointer m-auto lg:ml-auto transition-all duration-500 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500"
             loading={enrollIntoCourseOptions?.isLoading}
           >
             Enroll Now
