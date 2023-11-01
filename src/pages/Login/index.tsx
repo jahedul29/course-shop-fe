@@ -6,7 +6,7 @@ import { storeUserInfo } from '@/service/auth.service';
 import { loginFormSchema } from '@/validation-schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, message } from 'antd';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -64,6 +64,12 @@ const Login = () => {
               Login
             </Button>
           </Form>
+          <Link
+            className="border-2 border-primary hover:bg-primary hover:text-white duration-300 transition-all w-full text-lg mt-5 text-black flex items-center justify-center rounded-md py-1 text-base"
+            to="/register"
+          >
+            Register
+          </Link>
         </div>
       </div>
     </div>
