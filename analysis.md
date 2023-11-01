@@ -8,6 +8,7 @@
 - Typescript
 - React hook form
 - yup
+- vite
 
 ## Features
 
