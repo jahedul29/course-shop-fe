@@ -19,3 +19,5 @@ Thoroughout the developement of this application I used `yarn` as package manage
     `yarn build`
 
 ## to know details please check the [analysis](https://github.com/jahedul29/course-shop-fe/blob/main/analysis.md) file
+
+## Video Demo [https://www.loom.com/share/ab0f23caf503406c983da3993d117eae?sid=9265efb2-2abb-4b83-a628-c5a282781c09](https://www.loom.com/share/ab0f23caf503406c983da3993d117eae?sid=9265efb2-2abb-4b83-a628-c5a282781c09)
