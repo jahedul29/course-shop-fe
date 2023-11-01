@@ -18,4 +18,4 @@ Thoroughout the developement of this application I used `yarn` as package manage
 4.  Build the application
     `yarn build`
 
-to know details please check the [analysis](https://github.com/jahedul29/course-shop-fe/blob/main/analysis.md) file
+## to know details please check the [analysis](https://github.com/jahedul29/course-shop-fe/blob/main/analysis.md) file
